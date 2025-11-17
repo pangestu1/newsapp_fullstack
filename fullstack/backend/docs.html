@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 NewsApp API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .endpoint {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+
+        .endpoint.delete {
+            border-left-color: #dc3545;
+        }
+
+        .endpoint.post {
+            border-left-color: #007bff;
+        }
+
+        .endpoint.get {
+            border-left-color: #28a745;
+        }
+
+        .endpoint.put {
+            border-left-color: #ffc107;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .method.get { background: #28a745; }
+        .method.post { background: #007bff; }
+        .method.put { background: #ffc107; color: #000; }
+        .method.delete { background: #dc3545; }
+
+        .url {
+            font-family: 'Courier New', monospace;
+            background: #2d3748;
+            color: #68d391;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+
+        .description {
+            margin: 15px 0;
+            color: #666;
+        }
+
+        .params, .headers, .body, .response {
+            margin: 15px 0;
+        }
+
+        .params h4, .headers h4, .body h4, .response h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        code {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .badge.auth { background: #e53e3e; color: white; }
+        .badge.public { background: #38a169; color: white; }
+
+        .role-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .role-table table {
+            margin: 0;
+        }
+
+        .role-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .success { color: #38a169; }
+        .error { color: #e53e3e; }
+        .warning { color: #d69e2e; }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 NewsApp API Documentation</h1>
+            <p>RESTful API Backend untuk Aplikasi Berita dengan Node.js & MySQL</p>
+            <p><strong>Base URL:</strong> <code>http://localhost:5000/api</code></p>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="card">
+            <h2>🎯 Overview</h2>
+            <p>NewsApp adalah RESTful API backend untuk aplikasi berita dengan sistem role-based authentication. API ini mendukung operasi CRUD untuk berita, komentar, dan manajemen user.</p>
+            
+            <div class="role-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Permissions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Admin</strong></td>
+                            <td>Full access ke semua endpoint</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Penulis</strong></td>
+                            <td>Buat, edit, hapus berita (milik sendiri) + komentar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pembaca</strong></td>
+                            <td>Baca berita dan buat komentar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Authentication Endpoints -->
+        <div class="card">
+            <h2>🔐 Authentication</h2>
+
+            <!-- Register -->
+            <div class="endpoint post">
+                <div>
+                    <span class="method post">POST</span>
+                    <span class="badge public">PUBLIC</span>
+                </div>
+                <div class="url">/auth/register</div>
+                <div class="description">Mendaftarkan user baru ke sistem.</div>
+                
+                <div class="headers">
+                    <h4>Headers:</h4>
+                    <code>Content-Type: application/json</code>
+                </div>
+
+                <div class="body">
+                    <h4>Body:</h4>
+                    <pre><code>{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "pembaca"
+}</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Nama lengkap user</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Email user (unik)</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Password (min 6 karakter)</td>
+                        </tr>
+                        <tr>
+                            <td>role</td>
+                            <td>string</td>
+                            <td>❌</td>
+                            <td>admin, penulis, pembaca (default)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="response">
+                    <h4>Response Success (201):</h4>
+                    <pre><code>{
+  "message": "User created successfully",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "pembaca"
+  }
+}</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+            </div>
+
+            <!-- Login -->
+            <div class="endpoint post">
+                <div>
+                    <span class="method post">POST</span>
+                    <span class="badge public">PUBLIC</span>
+                </div>
+                <div class="url">/auth/login</div>
+                <div class="description">Login user dan mendapatkan JWT token.</div>
+                
+                <div class="body">
+                    <h4>Body:</h4>
+                    <pre><code>{
+  "email": "john@example.com",
+  "password": "password123"
+}</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+
+                <div class="response">
+                    <h4>Response Success (200):</h4>
+                    <pre><code>{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "pembaca"
+  }
+}</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Endpoints -->
+        <div class="card">
+            <h2>📰 News Management</h2>
+
+            <!-- Get All News -->
+            <div class="endpoint get">
+                <div>
+                    <span class="method get">GET</span>
+                    <span class="badge public">PUBLIC</span>
+                </div>
+                <div class="url">/news?page=1&limit=10&search=keyword</div>
+                <div class="description">Mendapatkan daftar semua berita dengan pagination dan search.</div>
+                
+                <div class="params">
+                    <h4>Query Parameters:</h4>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>❌</td>
+                            <td>1</td>
+                            <td>Nomor halaman</td>
+                        </tr>
+                        <tr>
+                            <td>limit</td>
+                            <td>integer</td>
+                            <td>❌</td>
+                            <td>10</td>
+                            <td>Jumlah item per halaman</td>
+                        </tr>
+                        <tr>
+                            <td>search</td>
+                            <td>string</td>
+                            <td>❌</td>
+                            <td>-</td>
+                            <td>Kata kunci pencarian</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="response">
+                    <h4>Response Success (200):</h4>
+                    <pre><code>{
+  "news": [
+    {
+      "id": 1,
+      "title": "Judul Berita",
+      "content": "Konten berita...",
+      "image": "image-123.jpg",
+      "author_id": 1,
+      "author_name": "John Doe",
+      "created_at": "2024-01-01T10:00:00.000Z"
+    }
+  ],
+  "total": 15,
+  "page": 1,
+  "totalPages": 2
+}</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+            </div>
+
+            <!-- Create News -->
+            <div class="endpoint post">
+                <div>
+                    <span class="method post">POST</span>
+                    <span class="badge auth">AUTH REQUIRED</span>
+                </div>
+                <div class="url">/news</div>
+                <div class="description">Membuat berita baru (hanya Admin dan Penulis).</div>
+                
+                <div class="headers">
+                    <h4>Headers:</h4>
+                    <code>Authorization: Bearer &lt;token&gt;</code><br>
+                    <code>Content-Type: multipart/form-data</code>
+                </div>
+
+                <div class="body">
+                    <h4>Body (form-data):</h4>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Judul berita</td>
+                        </tr>
+                        <tr>
+                            <td>content</td>
+                            <td>string</td>
+                            <td>✅</td>
+                            <td>Konten berita</td>
+                        </tr>
+                        <tr>
+                            <td>image</td>
+                            <td>file</td>
+                            <td>❌</td>
+                            <td>Gambar berita (max 5MB)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div class="card">
+            <h2>🚀 Quick Start Examples</h2>
+            
+            <div class="endpoint">
+                <h4>1. Register User</h4>
+                <pre><code>curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "password": "alice123",
+    "role": "penulis"
+  }'</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+
+            <div class="endpoint">
+                <h4>2. Create News (with image)</h4>
+                <pre><code>curl -X POST http://localhost:5000/api/news \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -F "title=Berita Terbaru" \
+  -F "content=Konten berita..." \
+  -F "image=@/path/to/image.jpg"</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+
+            <div class="endpoint">
+                <h4>3. Get News with Search</h4>
+                <pre><code>curl "http://localhost:5000/api/news?page=1&limit=5&search=teknologi"</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+        </div>
+
+        <!-- Error Codes -->
+        <div class="card">
+            <h2>⚠️ Error Codes</h2>
+            <table>
+                <tr>
+                    <th>Status Code</th>
+                    <th>Meaning</th>
+                    <th>Typical Scenarios</th>
+                </tr>
+                <tr>
+                    <td><span class="error">400</span></td>
+                    <td>Bad Request</td>
+                    <td>Validation error, invalid input</td>
+                </tr>
+                <tr>
+                    <td><span class="error">401</span></td>
+                    <td>Unauthorized</td>
+                    <td>Missing or invalid JWT token</td>
+                </tr>
+                <tr>
+                    <td><span class="error">403</span></td>
+                    <td>Forbidden</td>
+                    <td>Insufficient permissions</td>
+                </tr>
+                <tr>
+                    <td><span class="error">404</span></td>
+                    <td>Not Found</td>
+                    <td>Resource not found</td>
+                </tr>
+                <tr>
+                    <td><span class="error">413</span></td>
+                    <td>Payload Too Large</td>
+                    <td>File too large (>5MB)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>NewsApp Backend API &copy; 2024 | Built with Node.js, Express & MySQL</p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.previousElementSibling;
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#38a169';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#667eea';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
