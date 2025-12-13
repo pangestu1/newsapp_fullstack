@@ -5,6 +5,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
+// backend/app.js atau server.js
+const commentRoutes = require('./routes/comments');
+
 
 // Middleware
 app.use(cors());
@@ -18,7 +21,7 @@ app.get('/docs', (req, res) => {
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/news', require('./routes/news'));
-app.use('/api/comments', require('./routes/comments'));
+app.use('/api/comments', commentRoutes);
 app.use('/api/users', require('./routes/users'));
 
 // Database initialization

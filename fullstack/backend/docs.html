@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -43,27 +43,121 @@
             opacity: 0.9;
         }
 
+        .toc {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .toc h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+        }
+
+        .table-section {
+            margin-bottom: 40px;
+        }
+
+        .table-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .table-title h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .table-info {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .table-info h4 {
+            color: #667eea;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .table-info h4:first-child {
+            margin-top: 0;
+        }
+
+        .table-structure {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .table-structure table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-structure th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table-structure td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-structure tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-structure tr:hover {
+            background: #f0f0f0;
+        }
+
         .card {
             background: white;
             border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border-left: 5px solid #667eea;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .card h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .endpoint {
@@ -92,12 +186,13 @@
 
         .method {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             color: white;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-right: 10px;
+            margin-bottom: 10px;
         }
 
         .method.get { background: #28a745; }
@@ -107,8 +202,7 @@
 
         .url {
             font-family: 'Courier New', monospace;
-            background: #2d3748;
-            color: #68d391;
+            color: #000000;
             padding: 10px 15px;
             border-radius: 5px;
             margin: 10px 0;
@@ -155,12 +249,13 @@
         }
 
         pre {
-            background: #2d3748;
-            color: #e2e8f0;
+            background: #f5f5f5;
+            color: #000000;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
             margin: 10px 0;
+            border: 1px solid #ddd;
         }
 
         .badge {
@@ -237,6 +332,12 @@
         .copy-btn:hover {
             background: #5a6fd8;
         }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            margin: 30px 0;
+        }
     </style>
 </head>
 <body>
@@ -245,6 +346,19 @@
             <h1>📚 NewsApp API Documentation</h1>
             <p>RESTful API Backend untuk Aplikasi Berita dengan Node.js & MySQL</p>
             <p><strong>Base URL:</strong> <code>http://localhost:5000/api</code></p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📑 Daftar Isi</h3>
+            <ul>
+                <li><a href="#overview">🎯 Overview & Roles</a></li>
+                <li><a href="#users">👥 Manajemen User (Table: Users)</a></li>
+                <li><a href="#authentication">🔐 Authentication</a></li>
+                <li><a href="#news">📰 Manajemen Berita (Table: News)</a></li>
+                <li><a href="#comments">💬 Manajemen Komentar (Table: Comments)</a></li>
+                <li><a href="#database">🗄️ Database Structure</a></li>
+            </ul>
         </div>
 
         <!-- Overview Section -->
@@ -510,13 +624,551 @@
             </div>
         </div>
 
-        <!-- Quick Start Section -->
-        <div class="card">
-            <h2>🚀 Quick Start Examples</h2>
+        <!-- Get News by ID -->
+        <div class="endpoint get">
+            <div>
+                <span class="method get">GET</span>
+                <span class="badge public">PUBLIC</span>
+            </div>
+            <div class="url">/news/:id</div>
+            <div class="description">Mendapatkan detail berita berdasarkan ID.</div>
             
-            <div class="endpoint">
-                <h4>1. Register User</h4>
-                <pre><code>curl -X POST http://localhost:5000/api/auth/register \
+            <div class="params">
+                <h4>Path Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>integer</td>
+                        <td>ID berita</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response Success (200):</h4>
+                <pre><code>{
+  "id": 1,
+  "title": "Judul Berita",
+  "content": "Konten lengkap berita...",
+  "image": "image-123.jpg",
+  "author_id": 1,
+  "author_name": "John Doe",
+  "created_at": "2024-01-01T10:00:00.000Z",
+  "updated_at": "2024-01-01T10:00:00.000Z"
+}</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+        </div>
+
+        <!-- Update News -->
+        <div class="endpoint put">
+            <div>
+                <span class="method put">PUT</span>
+                <span class="badge auth">AUTH REQUIRED</span>
+            </div>
+            <div class="url">/news/:id</div>
+            <div class="description">Mengupdate berita (hanya author atau admin).</div>
+            
+            <div class="headers">
+                <h4>Headers:</h4>
+                <code>Authorization: Bearer &lt;token&gt;</code><br>
+                <code>Content-Type: multipart/form-data</code>
+            </div>
+
+            <div class="body">
+                <h4>Body (form-data):</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>string</td>
+                        <td>✅</td>
+                        <td>Judul berita baru</td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td>string</td>
+                        <td>✅</td>
+                        <td>Konten berita baru</td>
+                    </tr>
+                    <tr>
+                        <td>image</td>
+                        <td>file</td>
+                        <td>❌</td>
+                        <td>Gambar berita baru (optional)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Delete News -->
+        <div class="endpoint delete">
+            <div>
+                <span class="method delete">DELETE</span>
+                <span class="badge auth">AUTH REQUIRED</span>
+            </div>
+            <div class="url">/news/:id</div>
+            <div class="description">Menghapus berita (hanya author atau admin).</div>
+            
+            <div class="headers">
+                <h4>Headers:</h4>
+                <code>Authorization: Bearer &lt;token&gt;</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="card">
+        <h2>💬 Comments Management (Table: Comments)</h2>
+
+        <!-- Create Comment -->
+        <div class="endpoint post">
+            <div>
+                <span class="method post">POST</span>
+                <span class="badge auth">AUTH REQUIRED</span>
+            </div>
+            <div class="url">/comments</div>
+            <div class="description">Membuat komentar pada berita (semua role).</div>
+            
+            <div class="headers">
+                <h4>Headers:</h4>
+                <code>Authorization: Bearer &lt;token&gt;</code><br>
+                <code>Content-Type: application/json</code>
+            </div>
+
+            <div class="body">
+                <h4>Body:</h4>
+                <pre><code>{
+  "content": "Komentar yang bagus!",
+  "news_id": 1
+}</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td>string</td>
+                        <td>✅</td>
+                        <td>Isi komentar</td>
+                    </tr>
+                    <tr>
+                        <td>news_id</td>
+                        <td>integer</td>
+                        <td>✅</td>
+                        <td>ID berita yang dikomentari</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response Success (201):</h4>
+                <pre><code>{
+  "message": "Comment created successfully",
+  "comment": {
+    "id": 1,
+    "content": "Komentar yang bagus!",
+    "news_id": 1,
+    "user_id": 1,
+    "created_at": "2024-01-01T10:00:00.000Z"
+  }
+}</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+        </div>
+
+        <!-- Get Comments by News -->
+        <div class="endpoint get">
+            <div>
+                <span class="method get">GET</span>
+                <span class="badge public">PUBLIC</span>
+            </div>
+            <div class="url">/comments/news/:newsId</div>
+            <div class="description">Mendapatkan semua komentar untuk berita tertentu.</div>
+            
+            <div class="params">
+                <h4>Path Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>newsId</td>
+                        <td>integer</td>
+                        <td>ID berita</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response Success (200):</h4>
+                <pre><code>[
+  {
+    "id": 1,
+    "content": "Komentar bagus!",
+    "news_id": 1,
+    "user_id": 1,
+    "user_name": "Alice",
+    "created_at": "2024-01-01T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "content": "Informasi menarik",
+    "news_id": 1,
+    "user_id": 2,
+    "user_name": "Bob",
+    "created_at": "2024-01-01T10:30:00.000Z"
+  }
+]</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+        </div>
+
+        <!-- Delete Comment -->
+        <div class="endpoint delete">
+            <div>
+                <span class="method delete">DELETE</span>
+                <span class="badge auth">AUTH REQUIRED</span>
+            </div>
+            <div class="url">/comments/:id</div>
+            <div class="description">Menghapus komentar (hanya admin).</div>
+            
+            <div class="headers">
+                <h4>Headers:</h4>
+                <code>Authorization: Bearer &lt;token&gt;</code>
+            </div>
+
+            <div class="params">
+                <h4>Path Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>integer</td>
+                        <td>ID komentar yang akan dihapus</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users Management Section -->
+    <div class="card">
+        <h2>👥 Users Management (Table: Users)</h2>
+
+        <!-- Get All Users -->
+        <div class="endpoint get">
+            <div>
+                <span class="method get">GET</span>
+                <span class="badge auth">AUTH REQUIRED</span>
+            </div>
+            <div class="url">/users</div>
+            <div class="description">Mendapatkan daftar semua user (hanya admin).</div>
+            
+            <div class="headers">
+                <h4>Headers:</h4>
+                <code>Authorization: Bearer &lt;token&gt;</code>
+            </div>
+
+            <div class="response">
+                <h4>Response Success (200):</h4>
+                <pre><code>[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "admin",
+    "created_at": "2024-01-01T10:00:00.000Z",
+    "updated_at": "2024-01-01T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "role": "penulis",
+    "created_at": "2024-01-01T10:05:00.000Z",
+    "updated_at": "2024-01-01T10:05:00.000Z"
+  }
+]</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+        </div>
+
+        <!-- Update User Role -->
+        <div class="endpoint put">
+            <div>
+                <span class="method put">PUT</span>
+                <span class="badge auth">AUTH REQUIRED</span>
+            </div>
+            <div class="url">/users/:userId/role</div>
+            <div class="description">Mengubah role user (hanya admin).</div>
+            
+            <div class="headers">
+                <h4>Headers:</h4>
+                <code>Authorization: Bearer &lt;token&gt;</code><br>
+                <code>Content-Type: application/json</code>
+            </div>
+
+            <div class="body">
+                <h4>Body:</h4>
+                <pre><code>{
+  "role": "penulis"
+}</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+
+            <div class="params">
+                <h4>Path Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>userId</td>
+                        <td>integer</td>
+                        <td>ID user yang akan diupdate</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="params">
+                <h4>Body Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Values</th>
+                    </tr>
+                    <tr>
+                        <td>role</td>
+                        <td>string</td>
+                        <td>✅</td>
+                        <td>admin, penulis, pembaca</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Database Structure -->
+    <div class="card">
+        <h2>🗄️ Database Structure</h2>
+
+        <!-- Users Table -->
+        <div class="table-info">
+            <h4>📊 Table: Users</h4>
+            <p>Menyimpan informasi user dan kredensial login.</p>
+            <div class="table-structure">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Constraints</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>INT</td>
+                            <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                            <td>ID unik user</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>VARCHAR(255)</td>
+                            <td>NOT NULL</td>
+                            <td>Nama lengkap user</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>VARCHAR(255)</td>
+                            <td>NOT NULL, UNIQUE</td>
+                            <td>Email user (unik)</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>VARCHAR(255)</td>
+                            <td>NOT NULL</td>
+                            <td>Hash password terenkripsi</td>
+                        </tr>
+                        <tr>
+                            <td>role</td>
+                            <td>ENUM</td>
+                            <td>DEFAULT 'pembaca'</td>
+                            <td>admin, penulis, pembaca</td>
+                        </tr>
+                        <tr>
+                            <td>created_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP</td>
+                            <td>Waktu pembuatan akun</td>
+                        </tr>
+                        <tr>
+                            <td>updated_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>ON UPDATE CURRENT_TIMESTAMP</td>
+                            <td>Waktu update terakhir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- News Table -->
+        <div class="table-info">
+            <h4>📊 Table: News</h4>
+            <p>Menyimpan artikel berita yang dibuat oleh penulis.</p>
+            <div class="table-structure">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Constraints</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>INT</td>
+                            <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                            <td>ID unik berita</td>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>VARCHAR(255)</td>
+                            <td>NOT NULL</td>
+                            <td>Judul berita</td>
+                        </tr>
+                        <tr>
+                            <td>content</td>
+                            <td>TEXT</td>
+                            <td>NOT NULL</td>
+                            <td>Konten lengkap berita</td>
+                        </tr>
+                        <tr>
+                            <td>image</td>
+                            <td>VARCHAR(255)</td>
+                            <td>NULLABLE</td>
+                            <td>Path/nama file gambar</td>
+                        </tr>
+                        <tr>
+                            <td>author_id</td>
+                            <td>INT</td>
+                            <td>FOREIGN KEY (users.id)</td>
+                            <td>ID penulis berita</td>
+                        </tr>
+                        <tr>
+                            <td>created_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP</td>
+                            <td>Waktu pembuatan berita</td>
+                        </tr>
+                        <tr>
+                            <td>updated_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>ON UPDATE CURRENT_TIMESTAMP</td>
+                            <td>Waktu update terakhir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Comments Table -->
+        <div class="table-info">
+            <h4>📊 Table: Comments</h4>
+            <p>Menyimpan komentar user pada artikel berita.</p>
+            <div class="table-structure">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Constraints</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>INT</td>
+                            <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                            <td>ID unik komentar</td>
+                        </tr>
+                        <tr>
+                            <td>content</td>
+                            <td>TEXT</td>
+                            <td>NOT NULL</td>
+                            <td>Isi komentar</td>
+                        </tr>
+                        <tr>
+                            <td>news_id</td>
+                            <td>INT</td>
+                            <td>FOREIGN KEY (news.id)</td>
+                            <td>ID berita yang dikomentari</td>
+                        </tr>
+                        <tr>
+                            <td>user_id</td>
+                            <td>INT</td>
+                            <td>FOREIGN KEY (users.id)</td>
+                            <td>ID user yang komentar</td>
+                        </tr>
+                        <tr>
+                            <td>created_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP</td>
+                            <td>Waktu pembuatan komentar</td>
+                        </tr>
+                        <tr>
+                            <td>updated_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>ON UPDATE CURRENT_TIMESTAMP</td>
+                            <td>Waktu update terakhir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start Section -->
+    <div class="card">
+        <h2>🚀 Quick Start Examples</h2>
+        
+        <div class="endpoint">
+            <h4>1. Register User</h4>
+            <pre><code>curl -X POST http://localhost:5000/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Alice Johnson",
@@ -524,8 +1176,78 @@
     "password": "alice123",
     "role": "penulis"
   }'</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>2. Login</h4>
+            <pre><code>curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "alice@example.com",
+    "password": "alice123"
+  }'</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>3. Create News (dengan image)</h4>
+            <pre><code>curl -X POST http://localhost:5000/api/news \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -F "title=Berita Terbaru" \
+  -F "content=Konten berita..." \
+  -F "image=@/path/to/image.jpg"</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>4. Get All News</h4>
+            <pre><code>curl "http://localhost:5000/api/news?page=1&limit=5&search=teknologi"</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>5. Get News Detail</h4>
+            <pre><code>curl "http://localhost:5000/api/news/1"</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>6. Create Comment</h4>
+            <pre><code>curl -X POST http://localhost:5000/api/comments \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Berita yang sangat informatif!",
+    "news_id": 1
+  }'</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>7. Get Comments for News</h4>
+            <pre><code>curl "http://localhost:5000/api/comments/news/1"</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>8. Get All Users (admin only)</h4>
+            <pre><code>curl "http://localhost:5000/api/users" \
+  -H "Authorization: Bearer ADMIN_TOKEN"</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+
+        <div class="endpoint">
+            <h4>9. Update User Role (admin only)</h4>
+            <pre><code>curl -X PUT http://localhost:5000/api/users/2/role \
+  -H "Authorization: Bearer ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "role": "penulis"
+  }'</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+    </div>
 
             <div class="endpoint">
                 <h4>2. Create News (with image)</h4>
